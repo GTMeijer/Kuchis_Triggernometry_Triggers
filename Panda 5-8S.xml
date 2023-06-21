@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder Id="cb02d9f0-5302-49d0-9c70-29f029da187b" Name="Panda5-8" Enabled="true">
+    <Folders>
+      <Folder Id="f065270e-dd09-4354-a8c3-c1fbb38e9046" Name="P6S" Enabled="true">
+        <Folders>
+          <Folder Id="0aa6ed9a-f77e-4cd1-8cac-eb0a98d349f7" Name="Choros" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="EastWest" Id="46e2f268-cd7b-4553-8215-1d1b77270e39" RegularExpression="^20\|(?:[^|]*\|){3}7883\|">
+                <Actions>
+                  <Action OrderNumber="1" UseTTSTextExpression="North South" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="NorthSouth" Id="41a7cf2f-00ac-420b-bb4a-02b32179410c" RegularExpression="^20\|(?:[^|]*\|){3}7881\|">
+                <Actions>
+                  <Action OrderNumber="1" UseTTSTextExpression="East West" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+            </Triggers>
+          </Folder>
+        </Folders>
+        <Triggers />
+      </Folder>
+      <Folder Id="5821c523-e025-4590-9652-fe55065f3117" Name="P8S1" Enabled="true">
+        <Folders>
+          <Folder Id="d3cf66e4-0f01-4706-90da-04fa142f6114" Name="P8S_SecondSnekSpawn" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="false" Source="FFXIVNetwork" Sequential="True" Name="second snek spawn" Id="f86d8f9c-f238-4663-b3c1-72cb9c2efd3c" RegularExpression="^20\|[^|]*\|[^|]*\|[^|]*\|792B\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|(?&lt;x&gt;[^|]*)\|(?&lt;y&gt;[^|]*)\|">
+                <Actions>
+                  <Action OrderNumber="1" ListVariableOp="Push" ListVariableName="p8s_snake" ListVariableExpression="North" NamedCallbackName="command" NamedCallbackParam="/p A" OBSEndPoint="" UseTTSTextExpression="Cardinal sneks" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="85" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" ListVariableOp="Push" ListVariableName="p8s_snake" ListVariableExpression="North East" NamedCallbackName="command" NamedCallbackParam="/p 1" OBSEndPoint="" UseTTSTextExpression="Intercardinal sneks" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                      <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Sequential="True" Name="wipe" Id="fc1cfa6c-9990-48bf-8888-2273f44a1748" RegularExpression="^33\|[^|]*\|[^|]*\|4000000[3F]\|">
+                <Actions>
+                  <Action OrderNumber="1" ListVariableName="p8s_second_snake" OBSEndPoint="" VariableName="snek_cast_count" ActionType="Variable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" OBSEndPoint="" TriggerOp="DisableTrigger" TriggerId="f86d8f9c-f238-4663-b3c1-72cb9c2efd3c" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Sequential="True" Name="Into the Shadow count" Id="7cdc312b-fd29-4394-a053-27c6361d7a38" RegularExpression="^21\|[^|]*\|[^|]*\|[^|]*\|792A\|">
+                <Actions>
+                  <Action OrderNumber="1" VariableOp="SetNumeric" VariableName="snek_cast_count" VariableExpression="${var:snek_cast_count}+1" ActionType="Variable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" OBSEndPoint="" TriggerOp="EnableTrigger" TriggerId="f86d8f9c-f238-4663-b3c1-72cb9c2efd3c" ActionType="Trigger">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:snek_cast_count}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="3" OBSEndPoint="" TriggerOp="DisableTrigger" TriggerId="f86d8f9c-f238-4663-b3c1-72cb9c2efd3c" ActionType="Trigger" ExecutionDelayExpression="20000">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:snek_cast_count}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="4" OBSEndPoint="" VariableName="snek_cast_count" TriggerOp="DisableTrigger" TriggerId="f86d8f9c-f238-4663-b3c1-72cb9c2efd3c" ActionType="Variable" ExecutionDelayExpression="20000">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${var:snek_cast_count}" ExpressionTypeL="Numeric" ExpressionR="2" ExpressionTypeR="Numeric" ConditionType="NumericGreaterEqual" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+            </Triggers>
+          </Folder>
+          <Folder Id="feefed0e-9377-4b56-9c58-ac78ecf70b4c" Name="P8S_SnakeSpawn" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="false" Source="FFXIVNetwork" Sequential="True" Name="snake spawn" Id="719d9602-1a60-4406-bc71-aa1830df414e" RegularExpression="^20\|[^|]*\|[^|]*\|[^|]*\|792B\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|(?&lt;x&gt;[^|]*)\|(?&lt;y&gt;[^|]*)\|">
+                <Actions>
+                  <Action OrderNumber="1" ListVariableOp="Push" ListVariableName="p8s_snake" ListVariableExpression="North" NamedCallbackName="command" NamedCallbackParam="/p A" OBSEndPoint="" UseTTSTextExpression="North" ActionType="ListVariable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" ListVariableOp="Push" ListVariableName="p8s_snake" ListVariableExpression="North East" NamedCallbackName="command" NamedCallbackParam="/p 1" OBSEndPoint="" UseTTSTextExpression="North East" ActionType="ListVariable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                      <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="3" ListVariableOp="Push" ListVariableName="p8s_snake" ListVariableExpression="East" NamedCallbackName="command" NamedCallbackParam="/p B" OBSEndPoint="" UseTTSTextExpression="East" ActionType="ListVariable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                      <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="4" ListVariableOp="Push" ListVariableName="p8s_snake" ListVariableExpression="South East" NamedCallbackName="command" NamedCallbackParam="/p 2" OBSEndPoint="" ActionType="ListVariable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                      <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="5" ListVariableOp="Push" ListVariableName="p8s_snake" ListVariableExpression="South" NamedCallbackName="command" NamedCallbackParam="/p C" OBSEndPoint="" ActionType="ListVariable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="6" ListVariableOp="Push" ListVariableName="p8s_snake" ListVariableExpression="South West" NamedCallbackName="command" NamedCallbackParam="/p 3" OBSEndPoint="" ActionType="ListVariable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                      <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="7" ListVariableOp="Push" ListVariableName="p8s_snake" ListVariableExpression="West" NamedCallbackName="command" NamedCallbackParam="/p D" OBSEndPoint="" ActionType="ListVariable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                      <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="8" ListVariableOp="Push" ListVariableName="p8s_snake" ListVariableExpression="North West" NamedCallbackName="command" NamedCallbackParam="/p 4" OBSEndPoint="" ActionType="ListVariable">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${x}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                      <ConditionSingle Enabled="true" ExpressionL="${y}" ExpressionTypeL="Numeric" ExpressionR="100" ExpressionTypeR="Numeric" ConditionType="NumericLess" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="9" OBSEndPoint="" TriggerId="f8506940-bd28-4359-a02a-d83919a3e900" TriggerForce="regexp" ActionType="Trigger" ExecutionDelayExpression="100">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Sequential="True" Name="wipe" Id="f9f1603d-7297-4d41-819a-8c6ea9fa9973" RegularExpression="^33\|[^|]*\|[^|]*\|4000000[3F]\|">
+                <Actions>
+                  <Action OrderNumber="1" ListVariableName="p8s_snake" OBSEndPoint="" ActionType="ListVariable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" OBSEndPoint="" TriggerOp="EnableTrigger" TriggerId="f6b79af0-779f-4ea5-8f8e-4bae24f124c1" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" OBSEndPoint="" TriggerOp="DisableTrigger" TriggerId="719d9602-1a60-4406-bc71-aa1830df414e" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Into the Shadow 1" Id="f6b79af0-779f-4ea5-8f8e-4bae24f124c1" RegularExpression="^21\|[^|]*\|[^|]*\|[^|]*\|792A\|">
+                <Actions>
+                  <Action OrderNumber="1" OBSEndPoint="" TriggerOp="DisableTrigger" TriggerId="f6b79af0-779f-4ea5-8f8e-4bae24f124c1" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" ListVariableName="p8s_snake" OBSEndPoint="" ActionType="ListVariable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" OBSEndPoint="" TriggerOp="EnableTrigger" TriggerId="719d9602-1a60-4406-bc71-aa1830df414e" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="4" OBSEndPoint="" TriggerOp="DisableTrigger" TriggerId="719d9602-1a60-4406-bc71-aa1830df414e" ActionType="Trigger" ExecutionDelayExpression="20000">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Sequential="True" Name="callOut" Id="f8506940-bd28-4359-a02a-d83919a3e900" RegularExpression="" PeriodRefire="Deny" RefirePeriodExpression="1000">
+                <Actions>
+                  <Action OrderNumber="1" OBSEndPoint="" UseTTSTextExpression="${lvar:p8s_snake[1]} and ${lvar:p8s_snake[2]}" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" OBSEndPoint="" ActionType="Placeholder" ExecutionDelayExpression="100">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" ListVariableOp="Remove" ListVariableName="p8s_snake" ListVariableIndex="1" OBSEndPoint="" ActionType="ListVariable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="4" ListVariableOp="Remove" ListVariableName="p8s_snake" ListVariableIndex="1" OBSEndPoint="" ActionType="ListVariable">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+            </Triggers>
+          </Folder>
+          <Folder Id="b7686a00-77ce-4575-a848-4a8ed35f03fa" Name="Second_Snek_Adjust" Enabled="true">
+            <Folders />
+            <Triggers />
+          </Folder>
+        </Folders>
+        <Triggers />
+      </Folder>
+    </Folders>
+    <Triggers />
+  </ExportedFolder>
+</TriggernometryExport>

@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder Id="8f368408-ba73-450f-8b2e-0c23f593c90c" Name="The Omega Protocol (Ultimate)" Enabled="true">
+    <Folders>
+      <Folder Id="0ce9c0a3-a326-49d5-aef9-8cd09ec31ffb" Name="Program Loop &amp; Pantokrator with prio (change Melee1 etc. to actual character names.)" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="false" Source="FFXIVNetwork" Name="SetupGroup2" Id="bf01b828-c435-49f0-ae22-f8b05f41e08a" RegularExpression="^20\|(?:[^|]*\|){3}(7B0B|7B03)\|">
+            <Actions>
+              <Action OrderNumber="1" ListVariableOp="Push" ListVariableName="PLGroupList" ListVariableExpression="Tank2" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" ListVariableOp="Push" ListVariableName="PLGroupList" ListVariableExpression="Healer2" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" ListVariableOp="Push" ListVariableName="PLGroupList" ListVariableExpression="Melee2" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" ListVariableOp="Push" ListVariableName="PLGroupList" ListVariableExpression="Ranged2" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Sequential="True" Name="N in Line" Id="576e2c5a-a82d-46c0-8d67-9a15e0d8f206" RegularExpression="^26\|[^|]*\|(?&lt;marker&gt;BBC|BBD|BBE|D7B)\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|(?&lt;name&gt;[^|]*)\|" MutexToCapture="NinLineMutex">
+            <Actions>
+              <Action OrderNumber="1" ListVariableOp="Push" ListVariableName="1InLineList" ListVariableExpression="${name}" ActionType="ListVariable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:PLGroupList.indexof(${name})}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${marker}" ExpressionTypeL="String" ExpressionR="BBC" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="2" ListVariableOp="Push" ListVariableName="2InLineList" ListVariableExpression="${name}" ActionType="ListVariable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:PLGroupList.indexof(${name})}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${marker}" ExpressionTypeL="String" ExpressionR="BBD" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="3" ListVariableOp="Push" ListVariableName="3InLineList" ListVariableExpression="${name}" ActionType="ListVariable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:PLGroupList.indexof(${name})}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${marker}" ExpressionTypeL="String" ExpressionR="BBE" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="4" ListVariableOp="Push" ListVariableName="4InLineList" ListVariableExpression="${name}" ActionType="ListVariable">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:PLGroupList.indexof(${name})}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                  <ConditionSingle Enabled="true" ExpressionL="${marker}" ExpressionTypeL="String" ExpressionR="D7B" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Action>
+              <Action OrderNumber="5" UseTTSTextExpression="Swap" ActionType="UseTTS">
+                <Condition Enabled="true" Grouping="And">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:1InLineList.size)}+${lvar:2InLineList.size)}+${lvar:3InLineList.size)}+${lvar:4InLineList.size)}" ExpressionTypeL="Numeric" ExpressionR="4" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                  <ConditionGroup Enabled="true" Grouping="Or">
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:3InLineList.size}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:3InLineList.indexof(${_ffxivparty[1].name})}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:PLPAPrioList.indexof(${_ffxivparty[1].job})}" ExpressionTypeL="Numeric" ExpressionR="${lvar:PLPAPrioList.indexof(${_ffxivparty[${lvar:3InLineList[1]}].job})}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:PLPAPrioList.indexof(${_ffxivparty[1].job})}" ExpressionTypeL="Numeric" ExpressionR="${lvar:PLPAPrioList.indexof(${_ffxivparty[${lvar:3InLineList[2]}].job})}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                    </ConditionGroup>
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:4InLineList.size}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:4InLineList.indexof(${_ffxivparty[1].name})}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:PLPAPrioList.indexof(${_ffxivparty[1].job})}" ExpressionTypeL="Numeric" ExpressionR="${lvar:PLPAPrioList.indexof(${_ffxivparty[${lvar:4InLineList[1]}].job})}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:PLPAPrioList.indexof(${_ffxivparty[1].job})}" ExpressionTypeL="Numeric" ExpressionR="${lvar:PLPAPrioList.indexof(${_ffxivparty[${lvar:4InLineList[2]}].job})}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                    </ConditionGroup>
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:1InLineList.indexof(${_ffxivparty[1].name})}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:1InLineList.size}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:PLPAPrioList.indexof(${_ffxivparty[1].job})}" ExpressionTypeL="Numeric" ExpressionR="${lvar:PLPAPrioList.indexof(${_ffxivparty[${lvar:1InLineList[1]}].job})}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:PLPAPrioList.indexof(${_ffxivparty[1].job})}" ExpressionTypeL="Numeric" ExpressionR="${lvar:PLPAPrioList.indexof(${_ffxivparty[${lvar:1InLineList[2]}].job})}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                    </ConditionGroup>
+                    <ConditionGroup Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:2InLineList.size}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericGreater" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:2InLineList.indexof(${_ffxivparty[1].name})}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:PLPAPrioList.indexof(${_ffxivparty[1].job})}" ExpressionTypeL="Numeric" ExpressionR="${lvar:PLPAPrioList.indexof(${_ffxivparty[${lvar:2InLineList[1]}].job})}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                      <ConditionSingle Enabled="true" ExpressionL="${lvar:PLPAPrioList.indexof(${_ffxivparty[1].job})}" ExpressionTypeL="Numeric" ExpressionR="${lvar:PLPAPrioList.indexof(${_ffxivparty[${lvar:2InLineList[2]}].job})}" ExpressionTypeR="Numeric" ConditionType="NumericLessEqual" />
+                    </ConditionGroup>
+                  </ConditionGroup>
+                </Condition>
+              </Action>
+              <Action OrderNumber="6" ListVariableName="PLGroupList" TriggerId="f5726942-c2fb-4526-883c-3bf17931599b" TriggerForce="regexp" ActionType="Trigger">
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${lvar:1InLineList.size)}+${lvar:2InLineList.size)}+${lvar:3InLineList.size)}+${lvar:4InLineList.size)}" ExpressionTypeL="Numeric" ExpressionR="4" ExpressionTypeR="Numeric" ConditionType="NumericEqual" />
+                </Condition>
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or">
+              <ConditionSingle Enabled="true" ExpressionL="${lvar:PLGroupList.indexof(${name})}" ExpressionTypeL="Numeric" ExpressionR="0" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+            </Condition>
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Name="SetupGroup1" Id="6972285a-1ae4-4470-8a9f-c60f1b73655e" RegularExpression="^20\|(?:[^|]*\|){3}(7B0B|7B03)\|">
+            <Actions>
+              <Action OrderNumber="1" ListVariableOp="Push" ListVariableName="PLGroupList" ListVariableExpression="Tank1" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" ListVariableOp="Push" ListVariableName="PLGroupList" ListVariableExpression="Healer1" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" ListVariableOp="Push" ListVariableName="PLGroupList" ListVariableExpression="Melee1" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" ListVariableOp="Push" ListVariableName="PLGroupList" ListVariableExpression="Ranged1" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Name="Cleanup" Id="f5726942-c2fb-4526-883c-3bf17931599b" RegularExpression="">
+            <Actions>
+              <Action OrderNumber="1" ListVariableName="PLGroupList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" ListVariableName="1InLineList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" ListVariableName="2InLineList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" ListVariableName="3InLineList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" ListVariableName="4InLineList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="6" ListVariableName="PLPAPrioList" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="true" Grouping="Or" />
+            <Conditions />
+          </Trigger>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Sequential="True" Name="SetupPrio" Id="285055b0-c9ed-4495-809d-3c06084c22e9" RegularExpression="^20\|(?:[^|]*\|){3}(7B0B|7B03)\|">
+            <Actions>
+              <Action OrderNumber="1" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="PLD" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="2" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="WAR" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="3" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="DRK" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="4" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="GNB" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="5" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="MNK" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="6" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="DRG" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="7" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="NIN" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="8" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="SAM" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="9" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="RPR" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="10" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="BRD" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="11" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="MCH" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="12" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="DNC" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="13" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="BLM" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="14" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="SMN" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="15" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="RDM" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="16" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="BLU" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="17" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="WHM" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="18" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="SCH" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="19" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="AST" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+              <Action OrderNumber="20" ListVariableOp="Push" ListVariableName="PLPAPrioList" ListVariableExpression="SGE" ActionType="ListVariable">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+            <Conditions />
+          </Trigger>
+        </Triggers>
+      </Folder>
+    </Folders>
+    <Triggers />
+  </ExportedFolder>
+</TriggernometryExport>

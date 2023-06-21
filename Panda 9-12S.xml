@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<TriggernometryExport Version="1">
+  <ExportedFolder Id="a09c0a5d-be84-4393-a3b8-9ff7b21e7e59" Name="Panda 9-12" Enabled="true">
+    <Folders>
+      <Folder Id="44bb6f99-37b0-4fc1-87b8-0d136ad7f76f" Name="P12-1" Enabled="true">
+        <Folders>
+          <Folder Id="fa1118e2-22f3-4b84-83ad-788b0087634a" Name="SupahChainTheoryI" Enabled="true">
+            <Folders />
+            <Triggers>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Setup" Id="aedbedac-fb4a-459d-b8d2-563eb0f0ca58" RegularExpression="^20\|(?:[^|]*\|){3}82DA\|" Description="By Kuchinawa Fujibayashi">
+                <Actions>
+                  <Action OrderNumber="1" TriggerOp="EnableTrigger" TriggerId="2caf83ba-9d79-4505-8ad6-9fe0f9a37812" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" TriggerOp="EnableTrigger" TriggerId="79829241-b342-4103-8b06-0eed987d76e8" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" TriggerOp="EnableTrigger" TriggerId="3b5d85c7-38aa-477a-b26d-248c651ccc6a" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="4" TriggerOp="EnableTrigger" TriggerId="e8f612a7-a3c4-4ea2-95d4-5f0adb1439eb" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="5" TriggerOp="EnableTrigger" TriggerId="cad704b0-281d-4046-a845-2aac021a3a7a" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="6" TriggerOp="EnableTrigger" TriggerId="cc848a91-0548-4739-b326-fa306e3e3167" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="false" Source="FFXIVNetwork" Name="Astralstrong Soul" Id="2caf83ba-9d79-4505-8ad6-9fe0f9a37812" RegularExpression="^26\|[^|]*\|DFE\|(?:[^|]*\|){3}\|(?&lt;targetId&gt;[^|]*)" Description="By Kuchinawa Fujibayashi">
+                <Actions>
+                  <Action OrderNumber="1" UseTTSTextExpression="Left Laser" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" TriggerId="2c733dea-10d9-4bd8-9e4b-549374c5a916" TriggerForce="regexp" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${targetID}]}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="false" Source="FFXIVNetwork" Name="Umbralstrong Soul" Id="79829241-b342-4103-8b06-0eed987d76e8" RegularExpression="^26\|[^|]*\|DFD\|(?:[^|]*\|){3}\|(?&lt;targetId&gt;[^|]*)" Description="By Kuchinawa Fujibayashi">
+                <Actions>
+                  <Action OrderNumber="1" UseTTSTextExpression="Right Laser" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" TriggerId="2c733dea-10d9-4bd8-9e4b-549374c5a916" TriggerForce="regexp" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${targetID}]}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="false" Source="FFXIVNetwork" Name="Umbralbright Soul" Id="e8f612a7-a3c4-4ea2-95d4-5f0adb1439eb" RegularExpression="^26\|[^|]*\|DFB\|(?:[^|]*\|){3}\|(?&lt;targetId&gt;[^|]*)" Description="By Kuchinawa Fujibayashi">
+                <Actions>
+                  <Action OrderNumber="1" UseTTSTextExpression="Left Tower" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" TriggerId="2c733dea-10d9-4bd8-9e4b-549374c5a916" TriggerForce="regexp" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${targetID}]}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="false" Source="FFXIVNetwork" Name="Astralbright Soul" Id="3b5d85c7-38aa-477a-b26d-248c651ccc6a" RegularExpression="^26\|[^|]*\|DFC\|(?:[^|]*\|){3}\|(?&lt;targetId&gt;[^|]*)" Description="By Kuchinawa Fujibayashi">
+                <Actions>
+                  <Action OrderNumber="1" UseTTSTextExpression="Right Tower" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" TriggerId="2c733dea-10d9-4bd8-9e4b-549374c5a916" TriggerForce="regexp" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${targetID}]}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="false" Source="FFXIVNetwork" Name="Umbral Tilt" Id="cc848a91-0548-4739-b326-fa306e3e3167" RegularExpression="^26\|[^|]*\|DF8\|(?:[^|]*\|){3}\|(?&lt;targetId&gt;[^|]*)" Description="By Kuchinawa Fujibayashi">
+                <Actions>
+                  <Action OrderNumber="1" UseTTSTextExpression="Left solo" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" TriggerId="2c733dea-10d9-4bd8-9e4b-549374c5a916" TriggerForce="regexp" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${targetID}]}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="false" Source="FFXIVNetwork" Name="Astral Tilt" Id="cad704b0-281d-4046-a845-2aac021a3a7a" RegularExpression="^26\|[^|]*\|DF9\|(?:[^|]*\|){3}\|(?&lt;targetId&gt;[^|]*)" Description="By Kuchinawa Fujibayashi">
+                <Actions>
+                  <Action OrderNumber="1" UseTTSTextExpression="Right solo" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" TriggerId="2c733dea-10d9-4bd8-9e4b-549374c5a916" TriggerForce="regexp" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${_ffxivparty[${targetID}]}" ExpressionTypeL="Numeric" ExpressionR="1" ExpressionTypeR="Numeric" ConditionType="NumericNotEqual" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Source="None" Name="Finish" Id="2c733dea-10d9-4bd8-9e4b-549374c5a916" RegularExpression="" Description="By Kuchinawa Fujibayashi">
+                <Actions>
+                  <Action OrderNumber="1" TriggerOp="DisableTrigger" TriggerId="2caf83ba-9d79-4505-8ad6-9fe0f9a37812" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="2" TriggerOp="DisableTrigger" TriggerId="79829241-b342-4103-8b06-0eed987d76e8" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="3" TriggerOp="DisableTrigger" TriggerId="3b5d85c7-38aa-477a-b26d-248c651ccc6a" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="4" TriggerOp="DisableTrigger" TriggerId="e8f612a7-a3c4-4ea2-95d4-5f0adb1439eb" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="5" TriggerOp="DisableTrigger" TriggerId="cad704b0-281d-4046-a845-2aac021a3a7a" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                  <Action OrderNumber="6" TriggerOp="DisableTrigger" TriggerId="cc848a91-0548-4739-b326-fa306e3e3167" ActionType="Trigger">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+            </Triggers>
+          </Folder>
+        </Folders>
+        <Triggers />
+      </Folder>
+      <Folder Id="28136a9b-84a3-48a0-b4af-1e712488d192" Name="P10S" Enabled="true">
+        <Folders />
+        <Triggers>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Name="Head cleave on left" Id="3e0df19b-cbb1-40c1-9885-1f1ef5b2a915" RegularExpression="^20\|(?:[^|]*\|){3}8289\|">
+            <Actions>
+              <Action OrderNumber="1" UseTTSTextExpression="Right" ActionType="UseTTS">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+          <Trigger Enabled="true" Source="FFXIVNetwork" Name="Head cleave on right" Id="e549fe4f-0e77-44e5-8b41-2e4ff308bced" RegularExpression="^20\|(?:[^|]*\|){3}828B\|">
+            <Actions>
+              <Action OrderNumber="1" UseTTSTextExpression="Left" ActionType="UseTTS">
+                <Condition Enabled="false" Grouping="Or" />
+              </Action>
+            </Actions>
+            <Condition Enabled="false" Grouping="Or" />
+          </Trigger>
+        </Triggers>
+      </Folder>
+    </Folders>
+    <Triggers />
+  </ExportedFolder>
+</TriggernometryExport>
